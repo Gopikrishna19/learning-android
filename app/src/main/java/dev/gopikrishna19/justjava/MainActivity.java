@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         txtPrice = (TextView) findViewById(R.id.txtPrice);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
 
-        display(quantity);
+        displayQuantity(quantity);
         displayPrice(quantity * PRICE);
     }
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         quantity += 1;
 
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     public void decrementQuantity(View view) {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             quantity = 0;
         }
 
-        display(quantity);
+        displayQuantity(quantity);
     }
 
     private void displayPrice(int number) {
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         txtPrice.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
-    private void display(int number) {
+    private void displayQuantity(int number) {
 
-        txtQuantity.setText("" + number);
+        txtQuantity.setText(String.valueOf(number));
     }
 }
