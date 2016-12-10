@@ -9,18 +9,27 @@ import java.text.NumberFormat;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int quantity = 2;
+    private final int PRICE = 5;
+    private int quantity = 0;
+    private TextView txtPrice;
+    private TextView txtQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        txtPrice = (TextView) findViewById(R.id.txtPrice);
+        txtQuantity = (TextView) findViewById(R.id.txtQuantity);
+
+        display(quantity);
+        displayPrice(quantity * PRICE);
     }
 
     public void submitOrder(View view) {
 
-        displayPrice(quantity * 5);
+        displayPrice(quantity * PRICE);
     }
 
     public void incrementQuantity(View view) {
@@ -43,13 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayPrice(int number) {
 
-        TextView txtPrice = (TextView) findViewById(R.id.txtPrice);
         txtPrice.setText(NumberFormat.getCurrencyInstance().format(number));
     }
 
     private void display(int number) {
 
-        TextView txtQuantity = (TextView) findViewById(R.id.txtQuantity);
         txtQuantity.setText("" + number);
     }
 }
