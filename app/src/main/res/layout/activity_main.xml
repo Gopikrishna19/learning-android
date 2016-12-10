@@ -16,13 +16,25 @@
         android:text="@string/quantity"
         android:textAllCaps="true"/>
 
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:onClick="incrementQuantity"
+        android:text="@string/plus"/>
+
     <TextView
         android:id="@+id/txtQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_gutter"
-        android:text="0"
+        android:text="2"
         android:textColor="@android:color/black"/>
+
+    <Button
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:onClick="decrementQuantity"
+        android:text="@string/minus"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -44,4 +56,6 @@
         android:layout_height="wrap_content"
         android:onClick="submitOrder"
         android:text="@string/order"/>
+
+
 </LinearLayout>
