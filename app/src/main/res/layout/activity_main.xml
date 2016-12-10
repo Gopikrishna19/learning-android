@@ -17,6 +17,7 @@
         android:textAllCaps="true"/>
 
     <TextView
+        android:id="@+id/txtQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_gutter"
@@ -26,5 +27,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="submitOrder"
         android:text="@string/order"/>
 </LinearLayout>
