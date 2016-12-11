@@ -1,111 +1,128 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dev.gopikrishna19.justjava.MainActivity">
+    android:orientation="vertical"
+    tools:context="dev.gopikrishna19.justjava.MainActivity"
+    >
 
-    <LinearLayout
-        android:id="@+id/activity_main"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="true"
-        android:orientation="vertical"
-        android:padding="@dimen/activity_gutter">
-
-        <EditText
-            android:id="@+id/editName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:hint="@string/name"
-            android:inputType="textCapSentences"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:text="@string/quantity"
-            android:textAllCaps="true"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:id="@+id/activity_main"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:orientation="horizontal">
+            android:focusable="true"
+            android:orientation="vertical"
+            android:padding="@dimen/activity_gutter">
 
-            <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:onClick="decrementQuantity"
-                android:text="@string/minus"/>
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_gutter"
+                android:hint="@string/name"
+                android:padding="8dp"
+                android:inputType="textCapSentences"/>
 
             <TextView
-                android:id="@+id/txtQuantity"
-                android:layout_width="48dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="@android:color/black"/>
+                android:layout_marginBottom="@dimen/activity_gutter"
+                android:text="@string/quantity"
+                android:textAllCaps="true"/>
 
-            <Button
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:onClick="incrementQuantity"
-                android:text="@string/plus"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_gutter"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:onClick="decrementQuantity"
+                    android:text="@string/minus"/>
+
+                <TextView
+                    android:id="@+id/txtQuantity"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"/>
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:onClick="incrementQuantity"
+                    android:text="@string/plus"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_gutter"
+                android:text="@string/toppings"
+                android:textAllCaps="true"/>
+
+            <CheckBox
+                android:id="@+id/cbWhippedCream"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="24dp"
+                android:paddingLeft="24dp"
+                android:paddingStart="24dp"
+                android:text="@string/whipped_cream"
+                android:textSize="16sp"/>
+
+            <CheckBox
+                android:id="@+id/cbChocolate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_gutter"
+                android:paddingEnd="24dp"
+                android:paddingLeft="24dp"
+                android:paddingStart="24dp"
+                android:text="@string/chocolate"
+                android:textSize="16sp"/>
         </LinearLayout>
+    </ScrollView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:text="@string/toppings"
-            android:textAllCaps="true"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gridDivider"/>
 
-        <CheckBox
-            android:id="@+id/cbWhippedCream"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingEnd="24dp"
-            android:paddingLeft="24dp"
-            android:paddingStart="24dp"
-            android:text="@string/whipped_cream"
-            android:textSize="16sp"/>
-
-        <CheckBox
-            android:id="@+id/cbChocolate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:paddingEnd="24dp"
-            android:paddingLeft="24dp"
-            android:paddingStart="24dp"
-            android:text="@string/chocolate"
-            android:textSize="16sp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
-            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:onClick="submitOrder"
+            android:layout_weight="1"
+            android:onClick="summarizeOrder"
             android:text="@string/summarize"/>
 
-        <TextView
-            android:id="@+id/txtOrderSummaryTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:text="@string/summary"
-            android:textAllCaps="true"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/gridDivider"/>
 
-        <TextView
-            android:id="@+id/txtOrderSummary"
-            android:layout_width="wrap_content"
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
-            android:text="@string/summary"
-            android:textColor="@android:color/black"/>
-
+            android:layout_weight="1"
+            android:onClick="submitOrder"
+            android:text="@string/order"/>
     </LinearLayout>
-</ScrollView>
-
+</LinearLayout>

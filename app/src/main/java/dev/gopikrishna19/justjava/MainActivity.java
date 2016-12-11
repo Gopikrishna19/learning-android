@@ -1,6 +1,10 @@
 package dev.gopikrishna19.justjava;
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -18,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox cbChocolate;
     private CheckBox cbWhippedCream;
     private EditText editName;
-    private TextView txtOrderSummary;
-    private TextView txtOrderSummaryTitle;
     private TextView txtQuantity;
 
     @Override
@@ -31,12 +33,7 @@ public class MainActivity extends AppCompatActivity {
         cbChocolate = (CheckBox) findViewById(R.id.cbChocolate);
         cbWhippedCream = (CheckBox) findViewById(R.id.cbWhippedCream);
         editName = (EditText) findViewById(R.id.editName);
-        txtOrderSummary = (TextView) findViewById(R.id.txtOrderSummary);
-        txtOrderSummaryTitle = (TextView) findViewById(R.id.txtOrderSummaryTitle);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
-
-        txtOrderSummaryTitle.setVisibility(View.INVISIBLE);
-        txtOrderSummary.setVisibility(View.INVISIBLE);
 
         displayQuantity(quantity);
     }
@@ -60,29 +57,59 @@ public class MainActivity extends AppCompatActivity {
         return quantity * price;
     }
 
+    public void summarizeOrder(View view) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder
+                .setMessage(getSummary())
+                .setCancelable(false)
+                .setTitle("Order Summary")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        dialogInterface.cancel();
+                    }
+                });
+
+        builder.create().show();
+
+    }
+
     public void submitOrder(View view) {
+
+        String orderSummary = getSummary();
+
+        Intent mailIntent = new Intent(Intent.ACTION_SENDTO);
+
+        mailIntent.setData(Uri.parse("mailto:"));
+        mailIntent.putExtra(Intent.EXTRA_EMAIL, "sandalblack19@gmail.com");
+        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Order summary from Just Java");
+        mailIntent.putExtra(Intent.EXTRA_TEXT, orderSummary);
+
+        if (mailIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mailIntent);
+        }
+    }
+
+    private String getSummary() {
 
         boolean hasChocolate = cbChocolate.isChecked();
         boolean hasWhippedCream = cbWhippedCream.isChecked();
         int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
 
-        String orderSummary =
-                "Hello, " + editName.getText() + "!\n" +
-                        "Add whipped cream? " + hasWhippedCream + "\n" +
-                        "Add chocolate? " + hasChocolate + "\n" +
-                        "Quantity: " + quantity + "\n" +
-                        "Total: " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
-                        "Thank you!";
-
-        txtOrderSummary.setVisibility(View.VISIBLE);
-        txtOrderSummaryTitle.setVisibility(View.VISIBLE);
-
-        displayOrderSummary(orderSummary);
+        return "Hello, " + editName.getText() + "!\n\n" +
+                "Add whipped cream? " + hasWhippedCream + "\n" +
+                "Add chocolate? " + hasChocolate + "\n" +
+                "Quantity: " + quantity + "\n" +
+                "Total: " + NumberFormat.getCurrencyInstance().format(price) + "\n\n" +
+                "Thank you!";
     }
 
     public void incrementQuantity(View view) {
 
-        quantity -= 1;
+        quantity += 1;
 
         if (quantity == 101) {
             quantity = 100;
@@ -100,11 +127,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         displayQuantity(quantity);
-    }
-
-    private void displayOrderSummary(String orderSummary) {
-
-        txtOrderSummary.setText(orderSummary);
     }
 
     private void displayQuantity(int number) {
