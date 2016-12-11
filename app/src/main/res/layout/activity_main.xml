@@ -1,84 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/activity_gutter"
     tools:context="dev.gopikrishna19.justjava.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:text="@string/quantity"
-        android:textAllCaps="true"/>
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:orientation="horizontal">
-
-        <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:onClick="decrementQuantity"
-            android:text="@string/minus"/>
+        android:orientation="vertical"
+        android:padding="@dimen/activity_gutter">
 
         <TextView
-            android:id="@+id/txtQuantity"
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"/>
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:text="@string/quantity"
+            android:textAllCaps="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:onClick="decrementQuantity"
+                android:text="@string/minus"/>
+
+            <TextView
+                android:id="@+id/txtQuantity"
+                android:layout_width="48dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="@android:color/black"/>
+
+            <Button
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:onClick="incrementQuantity"
+                android:text="@string/plus"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:text="@string/toppings"
+            android:textAllCaps="true"/>
+
+        <CheckBox
+            android:id="@+id/cbWhippedCream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:paddingEnd="24dp"
+            android:paddingLeft="24dp"
+            android:paddingStart="24dp"
+            android:text="@string/whipped_cream"
+            android:textSize="16sp"/>
 
         <Button
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:onClick="incrementQuantity"
-            android:text="@string/plus"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:onClick="submitOrder"
+            android:text="@string/summarize"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:text="@string/summary"
+            android:textAllCaps="true"/>
+
+        <TextView
+            android:id="@+id/txtOrderSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:textColor="@android:color/black"/>
+
     </LinearLayout>
+</ScrollView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:text="@string/toppings"
-        android:textAllCaps="true"/>
-
-    <CheckBox
-        android:id="@+id/cbWhippedCream"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:paddingEnd="24dp"
-        android:paddingLeft="24dp"
-        android:textSize="16sp"
-        android:paddingStart="24dp"
-        android:text="@string/whipped_cream"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:onClick="submitOrder"
-        android:text="@string/summarize"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:text="@string/summary"
-        android:textAllCaps="true"/>
-
-    <TextView
-        android:id="@+id/txtOrderSummary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:textColor="@android:color/black"/>
-
-</LinearLayout>
