@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
         builder
                 .setMessage(getSummary())
                 .setCancelable(false)
-                .setTitle("Order Summary")
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setTitle(getString(R.string.order_summary))
+                .setPositiveButton(getString(R.string.okay), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         mailIntent.setData(Uri.parse("mailto:"));
         mailIntent.putExtra(Intent.EXTRA_EMAIL, "sandalblack19@gmail.com");
-        mailIntent.putExtra(Intent.EXTRA_SUBJECT, "Order summary from Just Java");
+        mailIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.order_summary_from_just_java);
         mailIntent.putExtra(Intent.EXTRA_TEXT, orderSummary);
 
         if (mailIntent.resolveActivity(getPackageManager()) != null) {
@@ -99,12 +99,7 @@ public class MainActivity extends AppCompatActivity {
         boolean hasWhippedCream = cbWhippedCream.isChecked();
         int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
 
-        return "Hello, " + editName.getText() + "!\n\n" +
-                "Add whipped cream? " + hasWhippedCream + "\n" +
-                "Add chocolate? " + hasChocolate + "\n" +
-                "Quantity: " + quantity + "\n" +
-                "Total: " + NumberFormat.getCurrencyInstance().format(price) + "\n\n" +
-                "Thank you!";
+        return getString(R.string.order_summary_content, editName.getText(), hasWhippedCream, hasChocolate, quantity, NumberFormat.getCurrencyInstance().format(price));
     }
 
     public void incrementQuantity(View view) {
