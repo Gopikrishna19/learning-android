@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private int quantity = 0;
     private CheckBox cbChocolate;
     private CheckBox cbWhippedCream;
+    private EditText editName;
     private TextView txtOrderSummary;
     private TextView txtOrderSummaryTitle;
     private TextView txtQuantity;
@@ -28,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         cbChocolate = (CheckBox) findViewById(R.id.cbChocolate);
         cbWhippedCream = (CheckBox) findViewById(R.id.cbWhippedCream);
+        editName = (EditText) findViewById(R.id.editName);
         txtOrderSummary = (TextView) findViewById(R.id.txtOrderSummary);
         txtOrderSummaryTitle = (TextView) findViewById(R.id.txtOrderSummaryTitle);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
@@ -64,7 +67,8 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
 
         String orderSummary =
-                "Add whipped cream? " + hasWhippedCream + "\n" +
+                "Hello, " + editName.getText() + "!\n" +
+                        "Add whipped cream? " + hasWhippedCream + "\n" +
                         "Add chocolate? " + hasChocolate + "\n" +
                         "Quantity: " + quantity + "\n" +
                         "Total: " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
