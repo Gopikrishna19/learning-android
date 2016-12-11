@@ -11,7 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int PRICE = 5;
     private int quantity = 0;
-    private TextView txtPrice;
+    private TextView txtOrderSummary;
     private TextView txtQuantity;
 
     @Override
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtPrice = (TextView) findViewById(R.id.txtPrice);
+        txtOrderSummary = (TextView) findViewById(R.id.txtOrderSummary);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
 
         displayQuantity(quantity);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
         String priceText = "Price " + NumberFormat.getCurrencyInstance().format(number);
 
-        txtPrice.setText(priceText);
+        txtOrderSummary.setText(priceText);
     }
 
     private void displayQuantity(int number) {

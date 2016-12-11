@@ -57,7 +57,7 @@
         android:textAllCaps="true"/>
 
     <TextView
-        android:id="@+id/txtPrice"
+        android:id="@+id/txtOrderSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_gutter"
