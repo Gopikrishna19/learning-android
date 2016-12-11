@@ -5,4 +5,6 @@
     <string name="price">Price</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
+    <string name="summarize">Summarize</string>
+    <string name="summary">Summary</string>
 </resources>
