@@ -11,8 +11,10 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PRICE = 5;
-    private static final int WHIPPED_CREAM_PRICE = 5;
+    private static final int CHOCOLATE_PRICE = 1;
+    private static final int WHIPPED_CREAM_PRICE = 1;
     private int quantity = 0;
+    private CheckBox cbChocolate;
     private CheckBox cbWhippedCream;
     private TextView txtOrderSummary;
     private TextView txtQuantity;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cbChocolate = (CheckBox) findViewById(R.id.cbChocolate);
         cbWhippedCream = (CheckBox) findViewById(R.id.cbWhippedCream);
         txtOrderSummary = (TextView) findViewById(R.id.txtOrderSummary);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
@@ -30,13 +33,19 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
-    private int calculatePrice(int quantity, boolean hasWhippedCream) {
+    private int calculatePrice(int quantity, boolean hasWhippedCream, boolean hasChocolate) {
 
         int price = PRICE;
 
         if (hasWhippedCream) {
 
-            price += 1;
+            price += WHIPPED_CREAM_PRICE;
+
+        }
+
+        if (hasChocolate) {
+
+            price += CHOCOLATE_PRICE;
 
         }
 
@@ -45,12 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void submitOrder(View view) {
 
+        boolean hasChocolate = cbChocolate.isChecked();
         boolean hasWhippedCream = cbWhippedCream.isChecked();
-        int price = calculatePrice(quantity, hasWhippedCream);
+        int price = calculatePrice(quantity, hasWhippedCream, hasChocolate);
 
         String orderSummary =
-                "Price " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
-                        "Add whipped cream? " + hasWhippedCream;
+                "Add whipped cream? " + hasWhippedCream + "\n" +
+                        "Add chocolate? " + hasChocolate + "\n" +
+                        "Price " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
+                        "Thank you!";
 
         displayOrderSummary(orderSummary);
     }

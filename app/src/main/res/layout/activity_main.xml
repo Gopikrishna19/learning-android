@@ -57,11 +57,21 @@
             android:id="@+id/cbWhippedCream"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/activity_gutter"
             android:paddingEnd="24dp"
             android:paddingLeft="24dp"
             android:paddingStart="24dp"
             android:text="@string/whipped_cream"
+            android:textSize="16sp"/>
+
+        <CheckBox
+            android:id="@+id/cbChocolate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/activity_gutter"
+            android:paddingEnd="24dp"
+            android:paddingLeft="24dp"
+            android:paddingStart="24dp"
+            android:text="@string/chocolate"
             android:textSize="16sp"/>
 
         <Button
