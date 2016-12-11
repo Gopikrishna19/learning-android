@@ -7,4 +7,6 @@
     <string name="plus">+</string>
     <string name="summarize">Summarize</string>
     <string name="summary">Order Summary</string>
+    <string name="toppings">Toppings</string>
+    <string name="whipped_cream">Whipped cream</string>
 </resources>
