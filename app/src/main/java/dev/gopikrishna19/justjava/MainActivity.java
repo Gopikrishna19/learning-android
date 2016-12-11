@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckBox cbChocolate;
     private CheckBox cbWhippedCream;
     private TextView txtOrderSummary;
+    private TextView txtOrderSummaryTitle;
     private TextView txtQuantity;
 
     @Override
@@ -28,7 +29,11 @@ public class MainActivity extends AppCompatActivity {
         cbChocolate = (CheckBox) findViewById(R.id.cbChocolate);
         cbWhippedCream = (CheckBox) findViewById(R.id.cbWhippedCream);
         txtOrderSummary = (TextView) findViewById(R.id.txtOrderSummary);
+        txtOrderSummaryTitle = (TextView) findViewById(R.id.txtOrderSummaryTitle);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
+
+        txtOrderSummaryTitle.setVisibility(View.INVISIBLE);
+        txtOrderSummary.setVisibility(View.INVISIBLE);
 
         displayQuantity(quantity);
     }
@@ -61,8 +66,12 @@ public class MainActivity extends AppCompatActivity {
         String orderSummary =
                 "Add whipped cream? " + hasWhippedCream + "\n" +
                         "Add chocolate? " + hasChocolate + "\n" +
-                        "Price " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
+                        "Quantity: " + quantity + "\n" +
+                        "Total: " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
                         "Thank you!";
+
+        txtOrderSummary.setVisibility(View.VISIBLE);
+        txtOrderSummaryTitle.setVisibility(View.VISIBLE);
 
         displayOrderSummary(orderSummary);
     }
