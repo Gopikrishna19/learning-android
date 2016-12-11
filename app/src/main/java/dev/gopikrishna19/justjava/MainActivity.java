@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int PRICE = 5;
     private static final int CHOCOLATE_PRICE = 1;
     private static final int WHIPPED_CREAM_PRICE = 1;
-    private int quantity = 0;
+    private int quantity = 1;
     private CheckBox cbChocolate;
     private CheckBox cbWhippedCream;
     private EditText editName;
@@ -82,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void incrementQuantity(View view) {
 
-        quantity += 1;
+        quantity -= 1;
+
+        if (quantity == 101) {
+            quantity = 100;
+        }
 
         displayQuantity(quantity);
     }
@@ -91,8 +95,8 @@ public class MainActivity extends AppCompatActivity {
 
         quantity -= 1;
 
-        if (quantity < 0) {
-            quantity = 0;
+        if (quantity == 0) {
+            quantity = 1;
         }
 
         displayQuantity(quantity);
