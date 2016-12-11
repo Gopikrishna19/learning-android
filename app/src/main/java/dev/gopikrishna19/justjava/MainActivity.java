@@ -3,6 +3,7 @@ package dev.gopikrishna19.justjava;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -10,7 +11,9 @@ import java.text.NumberFormat;
 public class MainActivity extends AppCompatActivity {
 
     private static final int PRICE = 5;
+    private static final int WHIPPED_CREAM_PRICE = 5;
     private int quantity = 0;
+    private CheckBox cbWhippedCream;
     private TextView txtOrderSummary;
     private TextView txtQuantity;
 
@@ -20,21 +23,36 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cbWhippedCream = (CheckBox) findViewById(R.id.cbWhippedCream);
         txtOrderSummary = (TextView) findViewById(R.id.txtOrderSummary);
         txtQuantity = (TextView) findViewById(R.id.txtQuantity);
 
         displayQuantity(quantity);
-        displayPrice(calculatePrice());
     }
 
-    private int calculatePrice() {
+    private int calculatePrice(int quantity, boolean hasWhippedCream) {
 
-        return quantity * PRICE;
+        int price = PRICE;
+
+        if (hasWhippedCream) {
+
+            price += 1;
+
+        }
+
+        return quantity * price;
     }
 
     public void submitOrder(View view) {
 
-        displayPrice(calculatePrice());
+        boolean hasWhippedCream = cbWhippedCream.isChecked();
+        int price = calculatePrice(quantity, hasWhippedCream);
+
+        String orderSummary =
+                "Price " + NumberFormat.getCurrencyInstance().format(price) + "\n" +
+                        "Add whipped cream? " + hasWhippedCream;
+
+        displayOrderSummary(orderSummary);
     }
 
     public void incrementQuantity(View view) {
@@ -55,11 +73,9 @@ public class MainActivity extends AppCompatActivity {
         displayQuantity(quantity);
     }
 
-    private void displayPrice(int number) {
+    private void displayOrderSummary(String orderSummary) {
 
-        String priceText = "Price " + NumberFormat.getCurrencyInstance().format(number);
-
-        txtOrderSummary.setText(priceText);
+        txtOrderSummary.setText(orderSummary);
     }
 
     private void displayQuantity(int number) {
