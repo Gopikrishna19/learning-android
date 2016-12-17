@@ -8,4 +8,5 @@
     <string name="phrases">Phrases</string>
     <string name="colors">Colors</string>
     <string name="family">Family</string>
+    <string name="txt_default">Default</string>
 </resources>
