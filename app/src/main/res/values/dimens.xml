@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="list_item_height">88dp</dimen>
+    <dimen name="activity_gutter">16dp</dimen>
+</resources>
