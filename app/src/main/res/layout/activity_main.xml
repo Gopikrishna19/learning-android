@@ -13,8 +13,7 @@
         android:id="@+id/numbers"
         style="@style/CategoryStyle"
         android:background="@color/categoryNumbers"
-        android:text="@string/categoryNumbers"
-        android:onClick="openNumbersActivity"/>
+        android:text="@string/categoryNumbers"/>
 
     <TextView
         android:id="@+id/family"
