@@ -18,9 +18,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setClickListeners() {
 
-        findViewById(R.id.colors).setOnClickListener(new ClickListener());
-        findViewById(R.id.family).setOnClickListener(new ClickListener());
-        findViewById(R.id.numbers).setOnClickListener(new ClickListener());
-        findViewById(R.id.phrases).setOnClickListener(new ClickListener());
+        ClickListener clickListener = new ClickListener();
+
+        findViewById(R.id.colors).setOnClickListener(clickListener);
+        findViewById(R.id.family).setOnClickListener(clickListener);
+        findViewById(R.id.numbers).setOnClickListener(clickListener);
+        findViewById(R.id.phrases).setOnClickListener(clickListener);
     }
 }
