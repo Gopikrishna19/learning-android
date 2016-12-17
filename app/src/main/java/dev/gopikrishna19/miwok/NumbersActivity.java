@@ -2,11 +2,13 @@ package dev.gopikrishna19.miwok;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import dev.gopikrishna19.miwok.types.Word;
+import dev.gopikrishna19.miwok.types.WordAdapter;
 
 public class NumbersActivity extends AppCompatActivity {
 
@@ -16,8 +18,22 @@ public class NumbersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_numbers);
 
-        ArrayList<String> words = new ArrayList<>(Arrays.asList("one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"));
-        ArrayAdapter<String> wordsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, words);
+        ArrayList<Word> words = new ArrayList<>(
+                Arrays.asList(
+                        new Word("one", "lutti"),
+                        new Word("two", "otiiko"),
+                        new Word("three", "tolookosu"),
+                        new Word("four", "oyyisa"),
+                        new Word("five", "massoka"),
+                        new Word("six", "temmokka"),
+                        new Word("seven", "kenekaku"),
+                        new Word("eight", "kawinta"),
+                        new Word("nine", "wo'e"),
+                        new Word("ten", "na'aacha")
+                )
+        );
+
+        WordAdapter wordsAdapter = new WordAdapter(this, words);
 
         ListView numbersActivity = (ListView) findViewById(R.id.activity_numbers);
 
