@@ -2,9 +2,9 @@
 <ListView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_colors"
+    android:id="@+id/list_words"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="dev.gopikrishna19.miwok.ColorsActivity">
+    tools:context="dev.gopikrishna19.miwok.NumbersActivity">
 
 </ListView>
