@@ -24,29 +24,23 @@
 
             <EditText
                 android:id="@+id/editName"
+                style="@style/Component"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_gutter"
                 android:hint="@string/name"
-                android:padding="8dp"
-                android:inputType="textCapSentences"/>
+                android:inputType="textCapSentences"
+                android:padding="8dp"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_gutter"
+                style="@style/Component"
                 android:text="@string/quantity"
                 android:textAllCaps="true"/>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_gutter"
+                style="@style/Component"
                 android:orientation="horizontal">
 
                 <Button
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    style="@style/CounterButton"
                     android:onClick="decrementQuantity"
                     android:text="@string/minus"/>
 
@@ -58,39 +52,26 @@
                     android:textColor="@android:color/black"/>
 
                 <Button
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    style="@style/CounterButton"
                     android:onClick="incrementQuantity"
                     android:text="@string/plus"/>
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_gutter"
+                style="@style/Component"
                 android:text="@string/toppings"
                 android:textAllCaps="true"/>
 
             <CheckBox
                 android:id="@+id/cbWhippedCream"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingEnd="24dp"
-                android:paddingLeft="24dp"
-                android:paddingStart="24dp"
-                android:text="@string/whipped_cream"
-                android:textSize="16sp"/>
+                style="@style/Checkbox"
+                android:text="@string/whipped_cream"/>
 
             <CheckBox
                 android:id="@+id/cbChocolate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/activity_gutter"
-                android:paddingEnd="24dp"
-                android:paddingLeft="24dp"
-                android:paddingStart="24dp"
+                style="@style/Checkbox"
                 android:text="@string/chocolate"
-                android:textSize="16sp"/>
+                />
         </LinearLayout>
     </ScrollView>
 
@@ -105,10 +86,7 @@
         android:orientation="horizontal">
 
         <Button
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/FinalButton"
             android:onClick="summarizeOrder"
             android:text="@string/summarize"/>
 
@@ -118,10 +96,7 @@
             android:background="@color/gridDivider"/>
 
         <Button
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            style="@style/FinalButton"
             android:onClick="submitOrder"
             android:text="@string/order"/>
     </LinearLayout>
