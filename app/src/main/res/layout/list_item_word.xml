@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
+    android:layout_height="wrap_content"
+    android:minHeight="@dimen/list_item_height"
     android:orientation="horizontal">
 
     <ImageView
@@ -15,18 +16,24 @@
         tools:src="@mipmap/ic_launcher"/>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/activity_gutter"
-        android:layout_marginStart="@dimen/activity_gutter"
-        android:orientation="vertical">
+        android:id="@+id/layoutWord"
+        android:orientation="vertical"
+        android:paddingEnd="@dimen/activity_gutter"
+        android:paddingLeft="@dimen/activity_gutter"
+        android:paddingStart="@dimen/activity_gutter">
 
         <TextView
             android:id="@+id/txtMiwok"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/activity_line_gutter"
             android:layout_weight="1"
             android:gravity="bottom"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:textStyle="bold"
             tools:text="@string/miwok"/>
 
         <TextView
@@ -35,6 +42,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:gravity="top"
+            android:textColor="@android:color/white"
             tools:text="@string/txt_default"/>
     </LinearLayout>
 
