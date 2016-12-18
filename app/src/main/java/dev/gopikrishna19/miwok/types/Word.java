@@ -7,12 +7,12 @@ public class Word {
     private String txtDefault;
     private int imgIllustration;
 
-    public Word(String txtMiwok, String txtDefault) {
+    public Word(String txtDefault, String txtMiwok) {
 
         this(txtMiwok, txtDefault, NO_IMAGE);
     }
 
-    public Word(String txtMiwok, String txtDefault, int imgIllustration) {
+    public Word(String txtDefault, String txtMiwok, int imgIllustration) {
 
         this.txtMiwok = txtMiwok;
         this.txtDefault = txtDefault;
