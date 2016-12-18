@@ -32,9 +32,16 @@ public class WordAdapter extends ArrayAdapter<Word> {
         Word word = getItem(position);
         assert word != null;
 
-        ((ImageView) listItem.findViewById(R.id.imgIllustration)).setImageResource(word.getImgIllustration());
         ((TextView) listItem.findViewById(R.id.txtMiwok)).setText(word.getTxtMiwok());
         ((TextView) listItem.findViewById(R.id.txtDefault)).setText(word.getTxtDefault());
+
+        ImageView imgIllustration = (ImageView) listItem.findViewById(R.id.imgIllustration);
+
+        if (word.getImgIllustration() == 0) {
+            imgIllustration.setVisibility(View.GONE);
+        } else {
+            imgIllustration.setImageResource(word.getImgIllustration());
+        }
 
         return listItem;
     }
