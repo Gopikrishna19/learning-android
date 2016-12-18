@@ -1,36 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/activity_gutter">
+    android:layout_height="@dimen/list_item_height"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imgIllustration"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="@dimen/activity_gutter"
-        android:layout_marginRight="@dimen/activity_gutter"
+        android:layout_width="@dimen/list_item_height"
+        android:layout_height="@dimen/list_item_height"
         android:contentDescription="@string/illustration"
         tools:src="@mipmap/ic_launcher"/>
 
-    <TextView
-        android:id="@+id/txtMiwok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/activity_gutter"
-        android:layout_toEndOf="@id/imgIllustration"
-        android:layout_toRightOf="@id/imgIllustration"
-        tools:text="@string/miwok"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/activity_gutter"
+        android:layout_marginStart="@dimen/activity_gutter"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txtDefault"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txtMiwok"
-        android:layout_toEndOf="@id/imgIllustration"
-        android:layout_toRightOf="@id/imgIllustration"
-        tools:text="@string/txt_default"/>
-</RelativeLayout>
+        <TextView
+            android:id="@+id/txtMiwok"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="bottom"
+            tools:text="@string/miwok"/>
+
+        <TextView
+            android:id="@+id/txtDefault"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="top"
+            tools:text="@string/txt_default"/>
+    </LinearLayout>
+
+</LinearLayout>
