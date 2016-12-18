@@ -7,11 +7,22 @@
     android:layout_height="wrap_content"
     android:padding="@dimen/activity_gutter">
 
+    <ImageView
+        android:id="@+id/imgIllustration"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="@dimen/activity_gutter"
+        android:layout_marginRight="@dimen/activity_gutter"
+        android:contentDescription="@string/illustration"
+        tools:src="@mipmap/ic_launcher"/>
+
     <TextView
         android:id="@+id/txtMiwok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/activity_gutter"
+        android:layout_toEndOf="@id/imgIllustration"
+        android:layout_toRightOf="@id/imgIllustration"
         tools:text="@string/miwok"/>
 
     <TextView
@@ -19,5 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtMiwok"
+        android:layout_toEndOf="@id/imgIllustration"
+        android:layout_toRightOf="@id/imgIllustration"
         tools:text="@string/txt_default"/>
 </RelativeLayout>
