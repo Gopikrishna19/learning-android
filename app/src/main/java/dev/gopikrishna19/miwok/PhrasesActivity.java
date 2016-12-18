@@ -33,7 +33,7 @@ public class PhrasesActivity extends AppCompatActivity {
                 )
         );
 
-        WordAdapter wordsAdapter = new WordAdapter(this, words);
+        WordAdapter wordsAdapter = new WordAdapter(this, words, R.color.categoryPhrases);
 
         ListView numbersActivity = (ListView) findViewById(R.id.list_words);
 

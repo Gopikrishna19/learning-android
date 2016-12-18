@@ -14,10 +14,13 @@ import java.util.ArrayList;
 import dev.gopikrishna19.miwok.R;
 
 public class WordAdapter extends ArrayAdapter<Word> {
+    private int color;
 
-    public WordAdapter(Context context, ArrayList<Word> words) {
+    public WordAdapter(Context context, ArrayList<Word> words, int color) {
 
         super(context, 0, words);
+
+        this.color = color;
     }
 
     @NonNull
@@ -32,6 +35,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         Word word = getItem(position);
         assert word != null;
 
+        listItem.findViewById(R.id.layoutWord).setBackgroundResource(color);
         ((TextView) listItem.findViewById(R.id.txtMiwok)).setText(word.getTxtMiwok());
         ((TextView) listItem.findViewById(R.id.txtDefault)).setText(word.getTxtDefault());
 
