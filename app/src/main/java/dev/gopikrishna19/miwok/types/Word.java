@@ -3,20 +3,32 @@ package dev.gopikrishna19.miwok.types;
 public class Word {
     private String txtMiwok;
     private String txtDefault;
+    private int imgIllustration;
 
     public Word(String txtMiwok, String txtDefault) {
 
-        this.txtMiwok = txtMiwok;
-        this.txtDefault = txtDefault;
+        this(txtMiwok, txtDefault, 0);
     }
 
-    public String getTxtMiwok() {
+    public Word(String txtMiwok, String txtDefault, int imgIllustration) {
+
+        this.txtMiwok = txtMiwok;
+        this.txtDefault = txtDefault;
+        this.imgIllustration = imgIllustration;
+    }
+
+    String getTxtMiwok() {
 
         return txtMiwok;
     }
 
-    public String getTxtDefault() {
+    String getTxtDefault() {
 
         return txtDefault;
+    }
+
+    int getImgIllustration() {
+
+        return imgIllustration;
     }
 }
