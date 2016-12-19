@@ -6,23 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="@dimen/list_item_height"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    tools:background="@color/colorWindowBackground">
 
     <ImageView
         android:id="@+id/imgIllustration"
         android:layout_width="@dimen/list_item_height"
         android:layout_height="@dimen/list_item_height"
         android:contentDescription="@string/illustration"
-        tools:src="@mipmap/ic_launcher"/>
+        tools:src="@drawable/number_one"/>
 
     <LinearLayout
+        android:id="@+id/layoutWord"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layoutWord"
         android:orientation="vertical"
         android:paddingEnd="@dimen/activity_gutter"
         android:paddingLeft="@dimen/activity_gutter"
-        android:paddingStart="@dimen/activity_gutter">
+        android:paddingStart="@dimen/activity_gutter"
+        tools:background="@color/categoryNumbers">
 
         <TextView
             android:id="@+id/txtMiwok"
