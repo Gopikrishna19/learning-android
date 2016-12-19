@@ -1,15 +1,13 @@
 package dev.gopikrishna19.miwok;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import dev.gopikrishna19.miwok.listeners.WordClickListener;
 import dev.gopikrishna19.miwok.types.Word;
 import dev.gopikrishna19.miwok.types.WordAdapter;
 
@@ -41,19 +39,6 @@ public class NumbersActivity extends AppCompatActivity {
         ListView numbersActivity = (ListView) findViewById(R.id.list_words);
 
         numbersActivity.setAdapter(wordsAdapter);
-        numbersActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            MediaPlayer mediaPlayer;
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
-                if(mediaPlayer != null && mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                }
-
-                mediaPlayer = MediaPlayer.create(NumbersActivity.this, words.get(position).getRawPronunciation());
-                mediaPlayer.start();
-            }
-        });
+        numbersActivity.setOnItemClickListener(new WordClickListener(words));
     }
 }

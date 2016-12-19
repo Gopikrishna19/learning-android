@@ -10,6 +10,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import dev.gopikrishna19.miwok.listeners.WordClickListener;
 import dev.gopikrishna19.miwok.types.Word;
 import dev.gopikrishna19.miwok.types.WordAdapter;
 
@@ -41,19 +42,6 @@ public class FamilyActivity extends AppCompatActivity {
         ListView familyActivity = (ListView) findViewById(R.id.list_words);
 
         familyActivity.setAdapter(wordsAdapter);
-        familyActivity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            MediaPlayer mediaPlayer = null;
-
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
-                if(mediaPlayer != null && mediaPlayer.isPlaying()) {
-                    mediaPlayer.stop();
-                }
-
-                mediaPlayer = MediaPlayer.create(FamilyActivity.this, words.get(position).getRawPronunciation());
-                mediaPlayer.start();
-            }
-        });
+        familyActivity.setOnItemClickListener(new WordClickListener(words));
     }
 }
