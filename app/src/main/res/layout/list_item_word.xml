@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/list_item"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:minHeight="@dimen/list_item_height"
+    android:layout_height="@dimen/list_item_height"
     android:orientation="horizontal"
     tools:background="@color/colorWindowBackground">
 
@@ -20,6 +19,12 @@
         android:id="@+id/layoutWord"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@id/imgIllustration"
+        android:layout_toRightOf="@id/imgIllustration"
         android:orientation="vertical"
         android:paddingEnd="@dimen/activity_gutter"
         android:paddingLeft="@dimen/activity_gutter"
@@ -48,4 +53,14 @@
             tools:text="@string/txt_default"/>
     </LinearLayout>
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/activity_gutter"
+        android:layout_marginRight="@dimen/activity_gutter"
+        android:contentDescription="@string/play_button"
+        android:src="@android:drawable/ic_media_play"/>
+</RelativeLayout>
