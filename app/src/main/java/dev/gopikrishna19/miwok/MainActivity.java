@@ -3,7 +3,7 @@ package dev.gopikrishna19.miwok;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import dev.gopikrishna19.miwok.listeners.ClickListener;
+import dev.gopikrishna19.miwok.listeners.CategoryClickListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,11 +18,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void setClickListeners() {
 
-        ClickListener clickListener = new ClickListener();
+        CategoryClickListener categoryClickListener = new CategoryClickListener();
 
-        findViewById(R.id.colors).setOnClickListener(clickListener);
-        findViewById(R.id.family).setOnClickListener(clickListener);
-        findViewById(R.id.numbers).setOnClickListener(clickListener);
-        findViewById(R.id.phrases).setOnClickListener(clickListener);
+        findViewById(R.id.colors).setOnClickListener(categoryClickListener);
+        findViewById(R.id.family).setOnClickListener(categoryClickListener);
+        findViewById(R.id.numbers).setOnClickListener(categoryClickListener);
+        findViewById(R.id.phrases).setOnClickListener(categoryClickListener);
     }
 }

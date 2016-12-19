@@ -10,7 +10,7 @@ import dev.gopikrishna19.miwok.NumbersActivity;
 import dev.gopikrishna19.miwok.PhrasesActivity;
 import dev.gopikrishna19.miwok.R;
 
-public class ClickListener implements View.OnClickListener {
+public class CategoryClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
