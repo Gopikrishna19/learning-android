@@ -1,10 +1,7 @@
 package dev.gopikrishna19.miwok;
 
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -15,6 +12,7 @@ import dev.gopikrishna19.miwok.types.Word;
 import dev.gopikrishna19.miwok.types.WordAdapter;
 
 public class FamilyActivity extends AppCompatActivity {
+    private WordClickListener wordClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,16 @@ public class FamilyActivity extends AppCompatActivity {
 
         ListView familyActivity = (ListView) findViewById(R.id.list_words);
 
+        wordClickListener = new WordClickListener(words);
+
         familyActivity.setAdapter(wordsAdapter);
-        familyActivity.setOnItemClickListener(new WordClickListener(words));
+        familyActivity.setOnItemClickListener(wordClickListener);
+    }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+        wordClickListener.releaseMediaPlayer();
     }
 }

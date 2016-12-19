@@ -34,7 +34,7 @@ public class WordClickListener implements AdapterView.OnItemClickListener {
         mediaPlayer.start();
     }
 
-    private void releaseMediaPlayer() {
+    public void releaseMediaPlayer() {
 
         if (mediaPlayer != null) {
             mediaPlayer.release();

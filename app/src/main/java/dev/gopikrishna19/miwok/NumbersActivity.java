@@ -12,6 +12,7 @@ import dev.gopikrishna19.miwok.types.Word;
 import dev.gopikrishna19.miwok.types.WordAdapter;
 
 public class NumbersActivity extends AppCompatActivity {
+    private WordClickListener wordClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,16 @@ public class NumbersActivity extends AppCompatActivity {
 
         ListView numbersActivity = (ListView) findViewById(R.id.list_words);
 
+        wordClickListener = new WordClickListener(words);
+
         numbersActivity.setAdapter(wordsAdapter);
-        numbersActivity.setOnItemClickListener(new WordClickListener(words));
+        numbersActivity.setOnItemClickListener(wordClickListener);
+    }
+
+    @Override
+    protected void onStop() {
+
+        super.onStop();
+        wordClickListener.releaseMediaPlayer();
     }
 }
