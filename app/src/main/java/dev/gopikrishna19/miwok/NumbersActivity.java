@@ -39,7 +39,7 @@ public class NumbersActivity extends AppCompatActivity {
 
         ListView numbersActivity = (ListView) findViewById(R.id.list_words);
 
-        wordClickListener = new WordClickListener(words);
+        wordClickListener = new WordClickListener(this, words);
 
         numbersActivity.setAdapter(wordsAdapter);
         numbersActivity.setOnItemClickListener(wordClickListener);

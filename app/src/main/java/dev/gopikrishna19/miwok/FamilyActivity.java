@@ -39,7 +39,7 @@ public class FamilyActivity extends AppCompatActivity {
 
         ListView familyActivity = (ListView) findViewById(R.id.list_words);
 
-        wordClickListener = new WordClickListener(words);
+        wordClickListener = new WordClickListener(this, words);
 
         familyActivity.setAdapter(wordsAdapter);
         familyActivity.setOnItemClickListener(wordClickListener);

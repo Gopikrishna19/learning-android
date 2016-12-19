@@ -39,7 +39,7 @@ public class PhrasesActivity extends AppCompatActivity {
 
         ListView phrasesActivity = (ListView) findViewById(R.id.list_words);
 
-        wordClickListener = new WordClickListener(words);
+        wordClickListener = new WordClickListener(this, words);
 
         phrasesActivity.setAdapter(wordsAdapter);
         phrasesActivity.setOnItemClickListener(wordClickListener);

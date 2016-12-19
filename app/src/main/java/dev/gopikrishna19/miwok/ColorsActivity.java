@@ -37,7 +37,7 @@ public class ColorsActivity extends AppCompatActivity {
 
         ListView colorsActivity = (ListView) findViewById(R.id.list_words);
 
-        wordClickListener = new WordClickListener(words);
+        wordClickListener = new WordClickListener(this, words);
 
         colorsActivity.setAdapter(wordsAdapter);
         colorsActivity.setOnItemClickListener(wordClickListener);
