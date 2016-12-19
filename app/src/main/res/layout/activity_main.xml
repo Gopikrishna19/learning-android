@@ -9,28 +9,56 @@
     android:orientation="vertical"
     tools:context="dev.gopikrishna19.miwok.MainActivity">
 
-    <TextView
-        android:id="@+id/numbers"
-        style="@style/CategoryStyle"
-        android:background="@color/categoryNumbers"
-        android:text="@string/categoryNumbers"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/categoryNumbers">
 
-    <TextView
-        android:id="@+id/family"
-        style="@style/CategoryStyle"
-        android:background="@color/categoryFamily"
-        android:text="@string/categoryFamily"/>
+        <TextView
+            android:id="@+id/numbers"
+            style="@style/CategoryStyle"
+            android:background="?android:selectableItemBackground"
+            android:text="@string/categoryNumbers"/>
 
-    <TextView
-        android:id="@+id/colors"
-        style="@style/CategoryStyle"
-        android:background="@color/categoryColors"
-        android:text="@string/categoryColors"/>
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/phrases"
-        style="@style/CategoryStyle"
-        android:background="@color/categoryPhrases"
-        android:text="@string/categoryPhrases"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/categoryFamily">
+
+        <TextView
+            android:id="@+id/family"
+            style="@style/CategoryStyle"
+            android:background="?android:selectableItemBackground"
+            android:text="@string/categoryFamily"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/categoryColors">
+
+        <TextView
+            android:id="@+id/colors"
+            style="@style/CategoryStyle"
+            android:background="?android:selectableItemBackground"
+            android:text="@string/categoryColors"/>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/categoryPhrases">
+
+        <TextView
+            android:id="@+id/phrases"
+            style="@style/CategoryStyle"
+            android:background="?android:selectableItemBackground"
+            android:text="@string/categoryPhrases"/>
+
+    </FrameLayout>
 
 </LinearLayout>
