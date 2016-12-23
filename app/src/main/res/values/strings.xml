@@ -3,4 +3,5 @@
     <string name="date">Date</string>
     <string name="location">Location</string>
     <string name="magnitude">0.0</string>
+    <string name="time">Time</string>
 </resources>

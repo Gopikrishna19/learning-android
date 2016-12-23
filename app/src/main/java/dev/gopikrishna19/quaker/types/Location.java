@@ -6,6 +6,7 @@ import java.util.Locale;
 
 public class Location {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+    private static final SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
     private String name;
     private double magnitude;
     private long dateTime;
@@ -14,12 +15,17 @@ public class Location {
 
         this.name = name;
         this.magnitude = magnitude;
-        this.dateTime = dateTime;
+        this.dateTime = dateTime * 1000L;
     }
 
     String getDateString() {
 
-        return Location.dateFormat.format(new Date(dateTime * 1000L));
+        return Location.dateFormat.format(new Date(dateTime));
+    }
+
+    String getTimeString() {
+
+        return Location.timeFormat.format(new Date(dateTime));
     }
 
     double getMagnitude() {

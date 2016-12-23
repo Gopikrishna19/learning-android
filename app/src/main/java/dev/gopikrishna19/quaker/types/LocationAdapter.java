@@ -32,9 +32,10 @@ public class LocationAdapter extends ArrayAdapter<Location> {
         Location location = getItem(position);
         assert location != null;
 
-        ((TextView) listItem.findViewById(R.id.txtDate)).setText(String.valueOf(location.getDateString()));
+        ((TextView) listItem.findViewById(R.id.txtDate)).setText(location.getDateString());
         ((TextView) listItem.findViewById(R.id.txtLocation)).setText(location.getName());
         ((TextView) listItem.findViewById(R.id.txtMagnitude)).setText(String.valueOf(location.getMagnitude()));
+        ((TextView) listItem.findViewById(R.id.txtTime)).setText(location.getTimeString());
 
         return listItem;
     }
