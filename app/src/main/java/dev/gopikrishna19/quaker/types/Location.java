@@ -8,18 +8,18 @@ public class Location {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
     private String name;
     private double magnitude;
-    private long date;
+    private long dateTime;
 
-    public Location(String name, double magnitude, long date) {
+    public Location(String name, double magnitude, long dateTime) {
 
         this.name = name;
         this.magnitude = magnitude;
-        this.date = date;
+        this.dateTime = dateTime;
     }
 
     String getDateString() {
 
-        return Location.dateFormat.format(new Date(date * 1000L));
+        return Location.dateFormat.format(new Date(dateTime * 1000L));
     }
 
     double getMagnitude() {
