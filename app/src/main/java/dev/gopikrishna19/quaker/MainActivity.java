@@ -2,10 +2,13 @@ package dev.gopikrishna19.quaker;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+
+import dev.gopikrishna19.quaker.types.Location;
+import dev.gopikrishna19.quaker.types.LocationAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,19 +18,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<String> locations = new ArrayList<>();
-        locations.add("San Francisco");
-        locations.add("London");
-        locations.add("Tokyo");
-        locations.add("Mexico City");
-        locations.add("Moscow");
-        locations.add("Rio de Janeiro");
-        locations.add("Paris");
+        ArrayList<Location> locations = new ArrayList<>(
+                Arrays.asList(
+                        new Location("San Francisco", 4.5, 1482534399),
+                        new Location("London", 4.5, 1482534399),
+                        new Location("Tokyo", 4.5, 1482534399),
+                        new Location("Mexico City", 4.5, 1482534399),
+                        new Location("Moscow", 4.5, 1482534399),
+                        new Location("Rio de Janeiro", 4.5, 1482534399),
+                        new Location("Paris", 4.5, 1482534399)
+                )
+        );
 
         ListView earthquakeListView = (ListView) findViewById(R.id.lvMain);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this, android.R.layout.simple_list_item_1, locations);
+        LocationAdapter adapter = new LocationAdapter(this, locations);
 
         earthquakeListView.setAdapter(adapter);
     }
