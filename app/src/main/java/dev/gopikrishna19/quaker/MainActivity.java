@@ -7,12 +7,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
+import dev.gopikrishna19.quaker.interfaces.OnLocationsLoaded;
 import dev.gopikrishna19.quaker.types.Location;
 import dev.gopikrishna19.quaker.types.LocationAdapter;
-import dev.gopikrishna19.quaker.interfaces.OnLocationsLoaded;
 import dev.gopikrishna19.quaker.utils.Locations;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,17 +24,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ListView earthquakeListView = (ListView) findViewById(R.id.lvMain);
+        final ListView lvQuakes = (ListView) findViewById(R.id.lvQuakes);
+        final ProgressBar pbLoader = (ProgressBar) findViewById(R.id.pbLoader);
 
         Locations asyncLocations = new Locations();
         asyncLocations.setOnLocationsLoaded(new OnLocationsLoaded() {
             @Override
             public void onLoad(final ArrayList<Location> locations) {
 
+                pbLoader.setVisibility(View.GONE);
+
                 LocationAdapter adapter = new LocationAdapter(MainActivity.this, locations);
 
-                earthquakeListView.setAdapter(adapter);
-                earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                lvQuakes.setAdapter(adapter);
+                lvQuakes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 

@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/lvMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:divider="@null"
-    android:dividerHeight="0dp"
-    tools:context="dev.gopikrishna19.quaker.MainActivity">
-</ListView>
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ProgressBar
+        android:id="@+id/pbLoader"
+        android:layout_width="48dp"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:indeterminate="true"
+        tools:visibility="gone"/>
+
+    <ListView
+        android:id="@+id/lvQuakes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"/>
+</LinearLayout>
