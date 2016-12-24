@@ -34,7 +34,7 @@ public class LocationAdapter extends ArrayAdapter<Location> {
 
         ((TextView) listItem.findViewById(R.id.txtDate)).setText(location.getDateString());
         ((TextView) listItem.findViewById(R.id.txtLocation)).setText(location.getName());
-        ((TextView) listItem.findViewById(R.id.txtMagnitude)).setText(String.valueOf(location.getMagnitude()));
+        ((TextView) listItem.findViewById(R.id.txtMagnitude)).setText(location.getMagnitude());
         ((TextView) listItem.findViewById(R.id.txtRelativeLocation)).setText(location.getRelativeName());
         ((TextView) listItem.findViewById(R.id.txtTime)).setText(location.getTimeString());
 
