@@ -119,8 +119,6 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
 
         urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
-        urlConnection.setReadTimeout(10000);
-        urlConnection.setConnectTimeout(15000);
         urlConnection.connect();
 
         if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
