@@ -1,3 +1,4 @@
 <resources>
     <dimen name="activity_gutter">16dp</dimen>
+    <dimen name="magnitude_diameter">36dp</dimen>
 </resources>
