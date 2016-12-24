@@ -7,4 +7,6 @@ import dev.gopikrishna19.quaker.types.Location;
 public interface OnLocationsLoaded {
 
     void onLoad(ArrayList<Location> locations);
+
+    void onStart();
 }

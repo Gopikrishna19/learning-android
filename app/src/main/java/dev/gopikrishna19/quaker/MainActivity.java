@@ -26,17 +26,18 @@ public class MainActivity extends AppCompatActivity {
 
         final ListView lvQuakes = (ListView) findViewById(R.id.lvQuakes);
         final ProgressBar pbLoader = (ProgressBar) findViewById(R.id.pbLoader);
+        final LocationAdapter adapter = new LocationAdapter(this, new ArrayList<Location>());
+
+        lvQuakes.setAdapter(adapter);
 
         Locations asyncLocations = new Locations();
         asyncLocations.setOnLocationsLoaded(new OnLocationsLoaded() {
             @Override
             public void onLoad(final ArrayList<Location> locations) {
 
+                adapter.addAll(locations);
                 pbLoader.setVisibility(View.GONE);
 
-                LocationAdapter adapter = new LocationAdapter(MainActivity.this, locations);
-
-                lvQuakes.setAdapter(adapter);
                 lvQuakes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -49,6 +50,13 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(reportIntent);
                     }
                 });
+            }
+
+            @Override
+            public void onStart() {
+
+                adapter.clear();
+                pbLoader.setVisibility(View.VISIBLE);
             }
         });
         asyncLocations.execute();

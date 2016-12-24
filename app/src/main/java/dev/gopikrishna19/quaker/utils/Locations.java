@@ -71,6 +71,16 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
         }
     }
 
+    @Override
+    protected void onPreExecute() {
+
+        super.onPreExecute();
+
+        if (onLocationsLoaded != null) {
+            onLocationsLoaded.onStart();
+        }
+    }
+
     @Nullable
     private URL createUrl() {
 
