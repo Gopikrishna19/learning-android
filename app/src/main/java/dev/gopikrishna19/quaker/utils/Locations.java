@@ -123,10 +123,9 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
         urlConnection.setConnectTimeout(15000);
         urlConnection.connect();
 
-        switch (urlConnection.getResponseCode()) {
-            case HttpURLConnection.HTTP_OK:
-                inputStream = urlConnection.getInputStream();
-                return readFromStream(inputStream);
+        if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            inputStream = urlConnection.getInputStream();
+            return readFromStream(inputStream);
         }
 
         throw new IOException("Disconnected: " + urlConnection.getResponseCode());
