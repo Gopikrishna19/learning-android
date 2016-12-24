@@ -49,8 +49,9 @@ public class Locations {
                 double magnitude = properties.getDouble("mag");
                 String name = properties.getString("place");
                 long time = properties.getLong("time");
+                String url = properties.getString("url");
 
-                locations.add(new Location(name, magnitude, time));
+                locations.add(new Location(name, magnitude, time, url));
             }
 
         } catch (JSONException e) {

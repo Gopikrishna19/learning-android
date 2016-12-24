@@ -10,15 +10,17 @@ public class Location {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
     private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("h:mm a", Locale.getDefault());
 
+    private long dateTime;
     private double magnitude;
     private String name;
-    private long dateTime;
+    private String reportUrl;
 
-    public Location(String name, double magnitude, long dateTime) {
+    public Location(String name, double magnitude, long dateTime, String reportUrl) {
 
-        this.magnitude = magnitude;
         this.dateTime = dateTime * 1000L;
+        this.magnitude = magnitude;
         this.name = name;
+        this.reportUrl = reportUrl;
     }
 
     String getDateString() {
@@ -44,5 +46,10 @@ public class Location {
     String getName() {
 
         return name;
+    }
+
+    public String getReportUrl() {
+
+        return reportUrl;
     }
 }
