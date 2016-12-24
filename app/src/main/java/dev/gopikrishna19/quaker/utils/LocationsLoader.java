@@ -27,7 +27,7 @@ import dev.gopikrishna19.quaker.types.Location;
 
 class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     private static final String LOG_TAG = LocationsLoader.class.getSimpleName();
-    private static final String USGS_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson";
+    private static final String USGS_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
 
     private ArrayList<Location> locations = new ArrayList<>();
     private boolean isLoading = false;
@@ -41,8 +41,7 @@ class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     private URL createUrl() {
 
         try {
-            String startTime = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-            return new URL(USGS_URL + "&starttime=" + startTime);
+            return new URL(USGS_URL);
         } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Error with creating URL", e);
             return null;
