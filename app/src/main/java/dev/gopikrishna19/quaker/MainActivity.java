@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 
-import dev.gopikrishna19.quaker.interfaces.OnLocationsLoaded;
+import dev.gopikrishna19.quaker.interfaces.ILocationsStatus;
 import dev.gopikrishna19.quaker.types.Location;
 import dev.gopikrishna19.quaker.types.LocationAdapter;
 import dev.gopikrishna19.quaker.utils.Locations;
@@ -31,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         lvQuakes.setAdapter(adapter);
 
         Locations asyncLocations = new Locations();
-        asyncLocations.setOnLocationsLoaded(new OnLocationsLoaded() {
+        asyncLocations.setiLocationsStatus(new ILocationsStatus() {
             @Override
-            public void onLoad(final ArrayList<Location> locations) {
+            public void onFinish(final ArrayList<Location> locations) {
 
                 adapter.addAll(locations);
                 pbLoader.setVisibility(View.GONE);

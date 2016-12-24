@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import dev.gopikrishna19.quaker.interfaces.OnLocationsLoaded;
+import dev.gopikrishna19.quaker.interfaces.ILocationsStatus;
 import dev.gopikrishna19.quaker.types.Location;
 
 public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
@@ -31,7 +31,7 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
 
     private HttpURLConnection urlConnection;
     private InputStream inputStream;
-    private OnLocationsLoaded onLocationsLoaded;
+    private ILocationsStatus iLocationsStatus;
     private URL url;
 
     public Locations() {
@@ -66,8 +66,8 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
             }
         }
 
-        if (onLocationsLoaded != null) {
-            onLocationsLoaded.onLoad(locations);
+        if (iLocationsStatus != null) {
+            iLocationsStatus.onFinish(locations);
         }
     }
 
@@ -76,8 +76,8 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
 
         super.onPreExecute();
 
-        if (onLocationsLoaded != null) {
-            onLocationsLoaded.onStart();
+        if (iLocationsStatus != null) {
+            iLocationsStatus.onStart();
         }
     }
 
@@ -157,8 +157,8 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
         return output.toString();
     }
 
-    public void setOnLocationsLoaded(OnLocationsLoaded onLocationsLoaded) {
+    public void setiLocationsStatus(ILocationsStatus iLocationsStatus) {
 
-        this.onLocationsLoaded = onLocationsLoaded;
+        this.iLocationsStatus = iLocationsStatus;
     }
 }
