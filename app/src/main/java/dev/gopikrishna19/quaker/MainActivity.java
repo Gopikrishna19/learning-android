@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ListView lvQuakes = (ListView) findViewById(R.id.lvQuakes);
         final ProgressBar pbLoader = (ProgressBar) findViewById(R.id.pbLoader);
+        final TextView txtNoQuakesFound = (TextView) findViewById(R.id.txtNoQuakesFound);
         final LocationAdapter adapter = new LocationAdapter(this, new ArrayList<Location>());
 
         lvQuakes.setAdapter(adapter);
@@ -46,16 +48,25 @@ public class MainActivity extends AppCompatActivity {
         LocationsLoaderManager loaderManager = new LocationsLoaderManager(this, getSupportLoaderManager());
         loaderManager.setILocationsStatus(new ILocationsStatus() {
             @Override
+            public void onEmpty() {
+
+                txtNoQuakesFound.setVisibility(View.VISIBLE);
+                pbLoader.setVisibility(View.GONE);
+            }
+
+            @Override
             public void onFinish(ArrayList<Location> locations) {
 
                 adapter.addAll(locations);
                 pbLoader.setVisibility(View.GONE);
+                txtNoQuakesFound.setVisibility(View.GONE);
             }
 
             @Override
             public void onStart() {
 
                 adapter.clear();
+                txtNoQuakesFound.setVisibility(View.GONE);
                 pbLoader.setVisibility(View.VISIBLE);
             }
         });

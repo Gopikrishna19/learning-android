@@ -44,7 +44,11 @@ public class LocationsLoaderManager implements LoaderManager.LoaderCallbacks<Arr
     public void onLoadFinished(Loader<ArrayList<Location>> loader, ArrayList<Location> locations) {
 
         if (iLocationsStatus != null) {
-            iLocationsStatus.onFinish(locations);
+            if (locations.size() == 0) {
+                iLocationsStatus.onEmpty();
+            } else {
+                iLocationsStatus.onFinish(locations);
+            }
         }
     }
 
