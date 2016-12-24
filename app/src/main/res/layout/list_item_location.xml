@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="horizontal"
-              android:padding="@dimen/activity_gutter">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_gutter">
 
     <TextView
         android:id="@+id/txtMagnitude"
@@ -12,38 +14,57 @@
         android:layout_marginEnd="@dimen/activity_gutter"
         android:layout_marginRight="@dimen/activity_gutter"
         android:gravity="center_vertical"
-        android:text="@string/magnitude"/>
+        tools:text="@string/magnitude"/>
 
-    <TextView
-        android:id="@+id/txtLocation"
+    <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center_vertical"
-        android:text="@string/location"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtRelativeLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textAllCaps="true"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="12sp"
+            tools:text="@string/location"/>
+
+        <TextView
+            android:id="@+id/txtLocation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            tools:text="@string/location"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtDate"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="bottom"
-            android:text="@string/date"
-            android:textColor="@android:color/darker_gray"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@android:color/darker_gray"
+            tools:text="@string/date"/>
 
         <TextView
             android:id="@+id/txtTime"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="top"
-            android:text="@string/time"
-            android:textColor="@android:color/darker_gray"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:textColor="@android:color/darker_gray"
+            tools:text="@string/time"/>
     </LinearLayout>
 
 </LinearLayout>

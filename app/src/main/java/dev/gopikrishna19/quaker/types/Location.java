@@ -5,27 +5,43 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Location {
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
-    private static final SimpleDateFormat timeFormat = new SimpleDateFormat("h:mm a", Locale.getDefault());
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+    private static final SimpleDateFormat TIME_FORMAT = new SimpleDateFormat("h:mm a", Locale.getDefault());
+    private static final String LOCATION_SEPARATOR = " of ";
+
     private String name;
+    private String relativeName;
+
     private double magnitude;
     private long dateTime;
 
     public Location(String name, double magnitude, long dateTime) {
 
-        this.name = name;
         this.magnitude = magnitude;
         this.dateTime = dateTime * 1000L;
+        setName(name);
+    }
+
+    private void setName(String name) {
+
+        if (name.contains(LOCATION_SEPARATOR)) {
+            String[] parts = name.split(LOCATION_SEPARATOR);
+            this.relativeName = parts[0] + LOCATION_SEPARATOR;
+            this.name = parts[1];
+        } else {
+            this.relativeName = "Near the ";
+            this.name = name;
+        }
     }
 
     String getDateString() {
 
-        return Location.dateFormat.format(new Date(dateTime));
+        return DATE_FORMAT.format(new Date(dateTime));
     }
 
     String getTimeString() {
 
-        return Location.timeFormat.format(new Date(dateTime));
+        return TIME_FORMAT.format(new Date(dateTime));
     }
 
     double getMagnitude() {
@@ -36,5 +52,10 @@ public class Location {
     String getName() {
 
         return name;
+    }
+
+    String getRelativeName() {
+
+        return relativeName;
     }
 }
