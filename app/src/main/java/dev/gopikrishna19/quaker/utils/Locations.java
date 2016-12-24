@@ -22,8 +22,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import dev.gopikrishna19.quaker.types.Location;
 import dev.gopikrishna19.quaker.interfaces.OnLocationsLoaded;
+import dev.gopikrishna19.quaker.types.Location;
 
 public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
     private static final String LOG_TAG = Locations.class.getSimpleName();
@@ -42,14 +42,13 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
     @Override
     protected ArrayList<Location> doInBackground(URL... urls) {
 
-        String response = "";
         try {
-            response = getLocations();
+            return extractLocations(getLocations());
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error while making Http Request", e);
         }
 
-        return extractLocations(response);
+        return new ArrayList<>();
     }
 
     @Override
@@ -107,7 +106,7 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
             }
 
         } catch (JSONException e) {
-            Log.e(LOG_TAG, "Problem parsing the earthquake JSON results", e);
+            Log.e(LOG_TAG, "Problem parsing the JSON results", e);
         }
 
         return locations;
@@ -124,9 +123,13 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
         urlConnection.setConnectTimeout(15000);
         urlConnection.connect();
 
-        inputStream = urlConnection.getInputStream();
+        switch (urlConnection.getResponseCode()) {
+            case HttpURLConnection.HTTP_OK:
+                inputStream = urlConnection.getInputStream();
+                return readFromStream(inputStream);
+        }
 
-        return readFromStream(inputStream);
+        throw new IOException("Disconnected: " + urlConnection.getResponseCode());
     }
 
     @NonNull
