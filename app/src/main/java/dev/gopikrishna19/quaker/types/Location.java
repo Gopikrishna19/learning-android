@@ -31,7 +31,12 @@ public class Location {
         return TIME_FORMAT.format(new Date(dateTime));
     }
 
-    String getMagnitude() {
+    double getMagnitude() {
+
+        return magnitude;
+    }
+
+    String getMagnitudeString() {
 
         return DECIMAL_FORMAT.format(magnitude);
     }
