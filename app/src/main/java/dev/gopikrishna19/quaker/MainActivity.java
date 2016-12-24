@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         final ListView lvQuakes = (ListView) findViewById(R.id.lvQuakes);
         final ProgressBar pbLoader = (ProgressBar) findViewById(R.id.pbLoader);
-        final TextView txtNoQuakesFound = (TextView) findViewById(R.id.txtNoQuakesFound);
+        final TextView txtQuakesStatus = (TextView) findViewById(R.id.txtQuakesStatus);
         final LocationAdapter adapter = new LocationAdapter(this, new ArrayList<Location>());
 
         lvQuakes.setAdapter(adapter);
@@ -45,31 +45,43 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LocationsLoaderManager loaderManager = new LocationsLoaderManager(this, getSupportLoaderManager());
-        loaderManager.setILocationsStatus(new ILocationsStatus() {
-            @Override
-            public void onEmpty() {
+        LocationsLoaderManager loaderManager = new LocationsLoaderManager(
+                this,
+                getSupportLoaderManager(),
+                new ILocationsStatus() {
+                    @Override
+                    public void onEmpty() {
 
-                txtNoQuakesFound.setVisibility(View.VISIBLE);
-                pbLoader.setVisibility(View.GONE);
-            }
+                        txtQuakesStatus.setText(getString(R.string.no_quakes_found));
+                        txtQuakesStatus.setVisibility(View.VISIBLE);
+                        pbLoader.setVisibility(View.GONE);
+                    }
 
-            @Override
-            public void onFinish(ArrayList<Location> locations) {
+                    @Override
+                    public void onFinish(ArrayList<Location> locations) {
 
-                adapter.addAll(locations);
-                pbLoader.setVisibility(View.GONE);
-                txtNoQuakesFound.setVisibility(View.GONE);
-            }
+                        adapter.addAll(locations);
+                        pbLoader.setVisibility(View.GONE);
+                        txtQuakesStatus.setVisibility(View.GONE);
+                    }
 
-            @Override
-            public void onStart() {
+                    @Override
+                    public void onNoConnectivity() {
 
-                adapter.clear();
-                txtNoQuakesFound.setVisibility(View.GONE);
-                pbLoader.setVisibility(View.VISIBLE);
-            }
-        });
+                        txtQuakesStatus.setText(getString(R.string.no_internet_connection));
+                        txtQuakesStatus.setVisibility(View.VISIBLE);
+                        pbLoader.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onStart() {
+
+                        adapter.clear();
+                        txtQuakesStatus.setVisibility(View.GONE);
+                        pbLoader.setVisibility(View.VISIBLE);
+                    }
+                }
+        );
         loaderManager.load();
     }
 }

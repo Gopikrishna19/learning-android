@@ -10,5 +10,7 @@ public interface ILocationsStatus {
 
     void onFinish(ArrayList<Location> locations);
 
+    void onNoConnectivity();
+
     void onStart();
 }
