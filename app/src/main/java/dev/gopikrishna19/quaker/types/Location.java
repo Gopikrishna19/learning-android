@@ -17,7 +17,7 @@ public class Location {
 
     public Location(String name, double magnitude, long dateTime, String reportUrl) {
 
-        this.dateTime = dateTime * 1000L;
+        this.dateTime = dateTime;
         this.magnitude = magnitude;
         this.name = name;
         this.reportUrl = reportUrl;
