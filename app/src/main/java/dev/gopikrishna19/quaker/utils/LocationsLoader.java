@@ -1,8 +1,9 @@
 package dev.gopikrishna19.quaker.utils;
 
-import android.os.AsyncTask;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.content.AsyncTaskLoader;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -22,63 +23,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import dev.gopikrishna19.quaker.interfaces.ILocationsStatus;
 import dev.gopikrishna19.quaker.types.Location;
 
-public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
-    private static final String LOG_TAG = Locations.class.getSimpleName();
+class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
+    private static final String LOG_TAG = LocationsLoader.class.getSimpleName();
     private static final String USGS_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson";
 
-    private HttpURLConnection urlConnection;
-    private InputStream inputStream;
-    private ILocationsStatus iLocationsStatus;
-    private URL url;
+    private ArrayList<Location> locations = new ArrayList<>();
+    private boolean isLoading = false;
 
-    public Locations() {
+    LocationsLoader(Context context) {
 
-        url = createUrl();
-    }
-
-    @Override
-    protected ArrayList<Location> doInBackground(URL... urls) {
-
-        try {
-            return extractLocations(getLocations());
-        } catch (IOException e) {
-            Log.e(LOG_TAG, "Error while making Http Request", e);
-        }
-
-        return new ArrayList<>();
-    }
-
-    @Override
-    protected void onPostExecute(ArrayList<Location> locations) {
-
-        if (urlConnection != null) {
-            urlConnection.disconnect();
-        }
-
-        if (inputStream != null) {
-            try {
-                inputStream.close();
-            } catch (IOException e) {
-                Log.e(LOG_TAG, "Error while closing stream", e);
-            }
-        }
-
-        if (iLocationsStatus != null) {
-            iLocationsStatus.onFinish(locations);
-        }
-    }
-
-    @Override
-    protected void onPreExecute() {
-
-        super.onPreExecute();
-
-        if (iLocationsStatus != null) {
-            iLocationsStatus.onStart();
-        }
+        super(context);
     }
 
     @Nullable
@@ -93,7 +49,6 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
         }
     }
 
-    @NonNull
     private ArrayList<Location> extractLocations(String response) {
 
         ArrayList<Location> locations = new ArrayList<>();
@@ -125,14 +80,15 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
     @NonNull
     private String getLocations() throws IOException {
 
+        URL url = createUrl();
         assert url != null;
 
-        urlConnection = (HttpURLConnection) url.openConnection();
+        HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
         urlConnection.setRequestMethod("GET");
         urlConnection.connect();
 
         if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            inputStream = urlConnection.getInputStream();
+            InputStream inputStream = urlConnection.getInputStream();
             return readFromStream(inputStream);
         }
 
@@ -157,8 +113,31 @@ public class Locations extends AsyncTask<URL, Void, ArrayList<Location>> {
         return output.toString();
     }
 
-    public void setiLocationsStatus(ILocationsStatus iLocationsStatus) {
+    @Override
+    protected void onStartLoading() {
 
-        this.iLocationsStatus = iLocationsStatus;
+        Log.v("OnStartLoading", "YO");
+
+        if (!isLoading) {
+            forceLoad();
+        } else {
+            deliverResult(locations);
+        }
+    }
+
+    @Override
+    public ArrayList<Location> loadInBackground() {
+
+        Log.v("LoadInBackground", "YO");
+        try {
+            isLoading = true;
+            locations = extractLocations(getLocations());
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Error while making Http Request", e);
+        } finally {
+            isLoading = false;
+        }
+
+        return locations;
     }
 }

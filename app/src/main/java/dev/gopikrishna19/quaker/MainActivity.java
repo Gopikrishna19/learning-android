@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import dev.gopikrishna19.quaker.interfaces.ILocationsStatus;
 import dev.gopikrishna19.quaker.types.Location;
 import dev.gopikrishna19.quaker.types.LocationAdapter;
-import dev.gopikrishna19.quaker.utils.Locations;
+import dev.gopikrishna19.quaker.utils.LocationsLoaderManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,27 +29,27 @@ public class MainActivity extends AppCompatActivity {
         final LocationAdapter adapter = new LocationAdapter(this, new ArrayList<Location>());
 
         lvQuakes.setAdapter(adapter);
-
-        Locations asyncLocations = new Locations();
-        asyncLocations.setiLocationsStatus(new ILocationsStatus() {
+        lvQuakes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onFinish(final ArrayList<Location> locations) {
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                Location location = adapter.getItem(position);
+                assert location != null;
+
+                Intent reportIntent = new Intent(Intent.ACTION_VIEW);
+                reportIntent.setData(Uri.parse(location.getReportUrl()));
+
+                startActivity(reportIntent);
+            }
+        });
+
+        LocationsLoaderManager loaderManager = new LocationsLoaderManager(this, getSupportLoaderManager());
+        loaderManager.setILocationsStatus(new ILocationsStatus() {
+            @Override
+            public void onFinish(ArrayList<Location> locations) {
 
                 adapter.addAll(locations);
                 pbLoader.setVisibility(View.GONE);
-
-                lvQuakes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-
-                        Location location = locations.get(position);
-
-                        Intent reportIntent = new Intent(Intent.ACTION_VIEW);
-                        reportIntent.setData(Uri.parse(location.getReportUrl()));
-
-                        startActivity(reportIntent);
-                    }
-                });
             }
 
             @Override
@@ -59,6 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 pbLoader.setVisibility(View.VISIBLE);
             }
         });
-        asyncLocations.execute();
+        loaderManager.load();
     }
 }
