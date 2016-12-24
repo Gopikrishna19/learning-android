@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import dev.gopikrishna19.quaker.types.Location;
 import dev.gopikrishna19.quaker.types.LocationAdapter;
+import dev.gopikrishna19.quaker.interfaces.OnLocationsLoaded;
 import dev.gopikrishna19.quaker.utils.Locations;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,23 +23,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView earthquakeListView = (ListView) findViewById(R.id.lvMain);
+        final ListView earthquakeListView = (ListView) findViewById(R.id.lvMain);
 
-        final ArrayList<Location> locations = Locations.getLocations();
-        LocationAdapter adapter = new LocationAdapter(this, locations);
-
-        earthquakeListView.setAdapter(adapter);
-        earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        Locations asyncLocations = new Locations();
+        asyncLocations.setOnLocationsLoaded(new OnLocationsLoaded() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+            public void onLoad(final ArrayList<Location> locations) {
 
-                Location location = locations.get(position);
+                LocationAdapter adapter = new LocationAdapter(MainActivity.this, locations);
 
-                Intent reportIntent = new Intent(Intent.ACTION_VIEW);
-                reportIntent.setData(Uri.parse(location.getReportUrl()));
+                earthquakeListView.setAdapter(adapter);
+                earthquakeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-                startActivity(reportIntent);
+                        Location location = locations.get(position);
+
+                        Intent reportIntent = new Intent(Intent.ACTION_VIEW);
+                        reportIntent.setData(Uri.parse(location.getReportUrl()));
+
+                        startActivity(reportIntent);
+                    }
+                });
             }
         });
+        asyncLocations.execute();
     }
 }
