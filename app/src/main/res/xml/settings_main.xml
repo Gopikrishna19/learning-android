@@ -10,6 +10,13 @@
         android:selectAllOnFocus="true"
         android:title="@string/min_magnitude"/>
 
+    <EditTextPreference
+        android:defaultValue="@string/limit_default"
+        android:inputType="number"
+        android:key="@string/limit_key"
+        android:selectAllOnFocus="true"
+        android:title="@string/limit"/>
+
     <ListPreference
         android:defaultValue="@string/order_by_default"
         android:entries="@array/orderByLabels"

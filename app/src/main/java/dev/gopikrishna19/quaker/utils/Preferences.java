@@ -19,9 +19,11 @@ public class Preferences extends PreferenceFragment implements Preference.OnPref
 
         Preference minMagnitude = findPreference(getString(R.string.min_magnitude_key));
         Preference orderBy = findPreference(getString(R.string.order_by_key));
+        Preference limit = findPreference(getString(R.string.limit_key));
 
         bindPreferenceSummary(minMagnitude);
         bindPreferenceSummary(orderBy);
+        bindPreferenceSummary(limit);
     }
 
     private void bindPreferenceSummary(Preference preference) {

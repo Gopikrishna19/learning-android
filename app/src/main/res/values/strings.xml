@@ -18,6 +18,10 @@
     <string name="min_magnitude_default">6</string>
     <string name="min_magnitude_key">settingsMagnitude</string>
 
+    <string name="limit">Number of quakes to load</string>
+    <string name="limit_default">10</string>
+    <string name="limit_key">settingsLimit</string>
+
     <string name="order_by">Order By</string>
     <string name="order_by_default">@string/orderByMagnitudeValue</string>
     <string name="order_by_key">settingsOrderBy</string>
