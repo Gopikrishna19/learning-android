@@ -1,6 +1,7 @@
 package dev.gopikrishna19.quaker.utils;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.AsyncTaskLoader;
@@ -24,7 +25,7 @@ import dev.gopikrishna19.quaker.types.Location;
 
 class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     private static final String LOG_TAG = LocationsLoader.class.getSimpleName();
-    private static final String USGS_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
+    private static final String USGS_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query";
 
     private ArrayList<Location> locations = new ArrayList<>();
     private final QueryParams queryParams;
@@ -40,13 +41,15 @@ class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     @Nullable
     private URL createUrl() {
 
-        String url = USGS_URL
-                + "&orderby=" + "time"
-                + "&limit=" + "10"
-                + "&minmag=" + queryParams.getMinMagnitude();
-
         try {
-            return new URL(url);
+            Uri.Builder uriBuilder = Uri.parse(USGS_URL).buildUpon();
+
+            uriBuilder.appendQueryParameter("format", "geojson");
+            uriBuilder.appendQueryParameter("orderby", "time");
+            uriBuilder.appendQueryParameter("minmag", "6");
+            uriBuilder.appendQueryParameter("limit", "10");
+
+            return new URL(uriBuilder.toString());
         } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Error with creating URL", e);
         }
