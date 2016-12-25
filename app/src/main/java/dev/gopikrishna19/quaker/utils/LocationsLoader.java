@@ -18,10 +18,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
 
 import dev.gopikrishna19.quaker.types.Location;
 
@@ -30,22 +27,31 @@ class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     private static final String USGS_URL = "http://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&minmag=6&limit=10";
 
     private ArrayList<Location> locations = new ArrayList<>();
+    private final QueryParams queryParams;
     private boolean isLoading = false;
 
-    LocationsLoader(Context context) {
+    LocationsLoader(Context context, QueryParams queryParams) {
 
         super(context);
+
+        this.queryParams = queryParams;
     }
 
     @Nullable
     private URL createUrl() {
 
+        String url = USGS_URL
+                + "&orderby=" + "time"
+                + "&limit=" + "10"
+                + "&minmag=" + queryParams.getMinMagnitude();
+
         try {
-            return new URL(USGS_URL);
+            return new URL(url);
         } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Error with creating URL", e);
-            return null;
         }
+
+        return null;
     }
 
     private ArrayList<Location> extractLocations(String response) {
@@ -115,8 +121,6 @@ class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     @Override
     protected void onStartLoading() {
 
-        Log.v("OnStartLoading", "YO");
-
         if (!isLoading) {
             forceLoad();
         } else {
@@ -127,7 +131,6 @@ class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
     @Override
     public ArrayList<Location> loadInBackground() {
 
-        Log.v("LoadInBackground", "YO");
         try {
             isLoading = true;
             locations = extractLocations(getLocations());

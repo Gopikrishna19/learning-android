@@ -3,6 +3,7 @@ package dev.gopikrishna19.quaker;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import dev.gopikrishna19.quaker.interfaces.ILocationsStatus;
 import dev.gopikrishna19.quaker.types.Location;
 import dev.gopikrishna19.quaker.types.LocationAdapter;
+import dev.gopikrishna19.quaker.utils.QueryParams;
 import dev.gopikrishna19.quaker.utils.LocationsLoaderManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         LocationsLoaderManager loaderManager = new LocationsLoaderManager(
                 this,
                 getSupportLoaderManager(),
+                new QueryParams(this, PreferenceManager.getDefaultSharedPreferences(this)),
                 new ILocationsStatus() {
                     @Override
                     public void onEmpty() {

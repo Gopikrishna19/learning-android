@@ -14,19 +14,22 @@ import dev.gopikrishna19.quaker.types.Location;
 
 public class LocationsLoaderManager implements LoaderManager.LoaderCallbacks<ArrayList<Location>> {
 
-    private Context context;
-    private ILocationsStatus iLocationsStatus;
-    private LoaderManager loaderManager;
+    private final Context context;
+    private final ILocationsStatus iLocationsStatus;
+    private final LoaderManager loaderManager;
+    private final QueryParams queryParams;
 
     public LocationsLoaderManager(
             Context context,
             LoaderManager loaderManager,
+            QueryParams queryParams,
             ILocationsStatus iLocationsStatus
     ) {
 
         this.context = context;
-        this.loaderManager = loaderManager;
         this.iLocationsStatus = iLocationsStatus;
+        this.loaderManager = loaderManager;
+        this.queryParams = queryParams;
     }
 
     public void load() {
@@ -46,7 +49,7 @@ public class LocationsLoaderManager implements LoaderManager.LoaderCallbacks<Arr
 
         iLocationsStatus.onStart();
 
-        return new LocationsLoader(context);
+        return new LocationsLoader(context, queryParams);
     }
 
     @Override
