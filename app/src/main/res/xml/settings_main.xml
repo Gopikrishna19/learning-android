@@ -9,4 +9,11 @@
         android:key="@string/min_magnitude_key"
         android:selectAllOnFocus="true"
         android:title="@string/min_magnitude"/>
+
+    <ListPreference
+        android:defaultValue="@string/order_by_default"
+        android:entries="@array/orderByLabels"
+        android:entryValues="@array/orderByValues"
+        android:key="@string/order_by_key"
+        android:title="@string/order_by"/>
 </PreferenceScreen>
