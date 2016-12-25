@@ -46,7 +46,7 @@ class LocationsLoader extends AsyncTaskLoader<ArrayList<Location>> {
 
             uriBuilder.appendQueryParameter("format", "geojson");
             uriBuilder.appendQueryParameter("orderby", "time");
-            uriBuilder.appendQueryParameter("minmag", "6");
+            uriBuilder.appendQueryParameter("minmagnitude", String.valueOf(queryParams.getMinMagnitude()));
             uriBuilder.appendQueryParameter("limit", "10");
 
             return new URL(uriBuilder.toString());
