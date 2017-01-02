@@ -1,3 +1,4 @@
 <resources>
     <dimen name="activity_gutter">16dp</dimen>
+    <dimen name="activity_gutter_1_4">4dp</dimen>
 </resources>
