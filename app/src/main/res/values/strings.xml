@@ -7,4 +7,9 @@
     <string name="category_measurement">Measurement</string>
     <string name="hint_pet_weight">Pet Weight</string>
     <string name="unit_pet_weight">Kg</string>
+    <string name="action_insert_dummy_data">Insert dummy data</string>
+    <string name="action_delete_all_entries">Delete all entries</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_save">Save</string>
+    <string name="title_new_pet">New Pet</string>
 </resources>
