@@ -60,6 +60,7 @@
                 android:id="@+id/spinner_gender"
                 android:layout_width="wrap_content"
                 android:layout_height="48dp"
+                android:entries="@array/genders"
                 android:paddingEnd="@dimen/activity_gutter"
                 android:paddingRight="@dimen/activity_gutter"
                 android:paddingStart="@dimen/activity_gutter"
